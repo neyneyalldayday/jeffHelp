@@ -1,0 +1,15 @@
+<!-- views/update-post.handlebars -->
+
+
+
+<h2>Update Blog Post</h2>
+
+<form action="/api/post/update/{{postToUpdate.id}}" method="post">
+  <label for="title">Title:</label>
+  <input type="text" id="title" name="title" value="{{postToUpdate.title}}" required>
+
+  <label for="content">Content:</label>
+  <textarea id="content" name="content" rows="6" required>{{postToUpdate.content}}</textarea>
+
+  <button type="submit">Update Post</button>
+</form>

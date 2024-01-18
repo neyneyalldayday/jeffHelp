@@ -1,0 +1,14 @@
+<!-- views/delete-post.handlebars -->
+
+
+
+<h2>Delete Blog Post</h2>
+
+<p>Are you sure you want to delete the following blog post?</p>
+<h3>{{postToDelete.title}}</h3>
+<p>{{postToDelete.createdAt}}</p>
+<p>{{postToDelete.content}}</p>
+
+<form action="/api/post/delete/{{postToDelete.id}}" method="post">
+  <button type="submit">Delete Post</button>
+</form>

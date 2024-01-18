@@ -1,0 +1,19 @@
+<!-- views/home.handlebars -->
+
+
+
+<h2>Welcome to the Tech Blog!</h2>
+
+{{#if blogPosts.length}}
+  {{#each blogPosts}}
+    <div class="blog-post">
+      <h3>{{title}}</h3>
+      <p>{{createdAt}}</p>
+      <p>{{content}}</p>
+      <p>By {{User.username}}</p>
+      <a href="/post/{{id}}">Read more</a>
+    </div>
+  {{/each}}
+{{else}}
+  <p>No blog posts available.</p>
+{{/if}}

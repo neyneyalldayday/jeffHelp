@@ -1,0 +1,26 @@
+<section>
+  {{#each posts as |post| }}
+<a href = "/"> <span> {{title}}</span> 
+<span>{{content}}</span>
+</a>
+
+  {{/each}}
+</section>
+
+<!-- href="/dashboard/edit/{{id}} -->
+
+
+<!-- <h2>Your Dashboard</h2>
+
+{{#if userBlogPosts.length}}
+  {{#each userBlogPosts}}
+    <div class="blog-post">
+      <h3>{{title}}</h3>
+      <p>{{createdAt}}</p>
+      <p>{{content}}</p>
+      <a href="/post/{{id}}">Read more</a>
+    </div>
+  {{/each}}
+{{else}}
+  <p>You haven't created any blog posts yet. <a href="/post/new">Create one now</a>!</p>
+{{/if}} 

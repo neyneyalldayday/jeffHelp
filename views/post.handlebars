@@ -1,0 +1,27 @@
+<!-- views/post.handlebars -->
+
+
+
+<h2>{{singlePost.title}}</h2>
+<p>{{singlePost.createdAt}}</p>
+<p>{{singlePost.content}}</p>
+<p>By {{singlePost.User.username}}</p>
+
+{{#if singlePost.Comments.length}}
+  <h3>Comments</h3>
+  {{#each singlePost.Comments}}
+    <div class="comment">
+      <p>{{createdAt}} by {{User.username}}</p>
+      <p>{{text}}</p>
+    </div>
+  {{/each}}
+{{else}}
+  <p>No comments yet.</p>
+{{/if}}
+
+{{!-- Add a form for adding comments --}}
+<form action="/api/comment/{{singlePost.id}}" method="post">
+  <label for="comment">Add a Comment:</label>
+  <textarea id="comment" name="comment" rows="4" required></textarea>
+  <button type="submit">Submit</button>
+</form>

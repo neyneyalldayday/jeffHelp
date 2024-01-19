@@ -7,12 +7,17 @@ const dashboardView =  async (req, res) => {
   try {
     // Fetch blog posts created by the logged-in user
     const userBlogPosts = await db.Post.findAll({
-      where: { userId: req.session.userId },
-      order: [['createdAt', 'DESC']],
+      where: { 
+        userId: req.session.id 
+      },
+      
     });
+
+   console.log( "raw data 8))))))))))))))))))))))))))))))D~~~~", userBlogPosts)
     const posts = userBlogPosts.map((post) => post.get({plain:true}))
     
     // Render the dashboard with the user's blog posts
+    console.log("this is the user posts", posts)
     res.render('profile', { layout: "dashboard", posts });
   } catch (error) {
     console.error('Error fetching user blog posts:', error);

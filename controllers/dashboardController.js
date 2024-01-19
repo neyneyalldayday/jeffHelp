@@ -7,7 +7,7 @@ const dashboardView =  async (req, res) => {
   try {
     // Fetch blog posts created by the logged-in user
     const userBlogPosts = await db.Post.findAll({
-      where: { UserId: req.user.id },
+      where: { userId: req.session.userId },
       order: [['createdAt', 'DESC']],
     });
     const posts = userBlogPosts.map((post) => post.get({plain:true}))

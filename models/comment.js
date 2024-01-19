@@ -5,7 +5,7 @@ const sequelize = require('../config/config');
 const Comment = sequelize.define('Comment', {
   text: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: false,  
   },
 });
 

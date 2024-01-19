@@ -30,7 +30,7 @@ const renderHomepage = async (req, res) => {
       include: [{ model: db.User, as: 'author', attributes: ['username'] }],
       order: [['createdAt', 'DESC']],
     });
-  console.log(blogPosts);
+  console.log("blog post data---------------------------------",blogPosts);
     // Render the homepage with blog post data
     res.render('home', { blogPosts });
   } catch (error) {

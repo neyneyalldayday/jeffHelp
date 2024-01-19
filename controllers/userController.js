@@ -26,6 +26,7 @@ const handleSignUp = async (req, res) => {
     })
     console.log('User signed up:', username);
     // Redirect to the login page after successful signup
+    console.log("user creds", newUser)
     res.json(newUser)
   } catch (error) {
     console.error('Error during signup:', error);
@@ -50,6 +51,7 @@ const handleSignIn = async (req, res) => {
           req.session.userId = user.id; 
           req.session.username =  user.username;
           req.session.loggedIn = true;
+          console.log("user creds", user)
           res.json({
             user, 
             message: "You are now logged in."

@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const bcrypt = require('bcrypt');
+const helpers = require("./utils/helpers")
 const db = require('./models'); // Adjust the path as needed
 // const htmlRoutes = require('./routes/html-routes');
 // const userRoutes = require('./routes/user-routes');
@@ -27,7 +28,7 @@ const sessi = {
 app.use(session(sessi));
 
 // Configure Handlebars
-const hbs = exphbs.create({ defaultLayout: 'main' }); // Specify default layout
+const hbs = exphbs.create({ helpers }); // Specify default layout
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 

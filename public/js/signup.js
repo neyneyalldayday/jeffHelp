@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       if (response.ok) {
         // Redirect to the signin page after successful signup
-        window.location.href = "/";
+        document.location.replace("/dashboard");
       } else {
         // Handle errors, e.g., display an error message
         console.error("Error during signup:", response.statusText);

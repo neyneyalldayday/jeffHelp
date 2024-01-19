@@ -5,13 +5,13 @@
 <h2>Welcome to the Tech Blog!</h2>
 
 {{#if blogPosts.length}}
-  {{#each blogPosts}}
+  {{#each blogPosts as |currentPost|}}
     <div class="blog-post">
-      <h3>{{title}}</h3>
-      <p>{{createdAt}}</p>
-      <p>{{content}}</p>
-      <p>By {{User.username}}</p>
-      <a href="/post/{{id}}">Read more</a>
+      <h3>{{currentPost.dataValues.title}}</h3>
+      {{!-- <p>{{formatDate createdAt}}</p> --}}
+      <p>{{currentPost.dataValues.content}}</p>
+      <p>By {{currentPost.dataValues.author.dataValues.username}}</p>
+      <a href="/post/{{currentPost.dataValues.id}}">Read more</a>
     </div>
   {{/each}}
 {{else}}

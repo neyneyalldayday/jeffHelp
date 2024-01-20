@@ -1,14 +1,14 @@
 <section class="posts">
   
   {{#each posts as |post| }}
-<a href = "/"> <span> {{post.dataValues.title}}</span> 
-<span>{{post.dataValues.content}}</span>
-</a>
-
+  <div class="post-card">
+    <a href = "/"> <span> {{post.title}}</span></a>
+    <p><span>{{post.content}}</span></p>
+  </div>
   {{/each}}
 </section>
 <section>
-  <a href="/posts/">create posts</a>
+  <a href="/api/post/new">create posts</a>
 </section>
 
 <!-- href="/dashboard/edit/{{id}} -->

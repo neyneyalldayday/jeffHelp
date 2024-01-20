@@ -6,18 +6,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
   <title>Document</title>
 </head>
 <body>
   <div>
     <a href="/">Home</a>
         <a href="/dashboard">Dashboard</a>
-        <a href="/logout">Log Out</a>
+        <button id="logout">Log Out</button>
   </div>
 
 
   <main>
     {{{body}}}
   </main>
+   {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
 </body>
 </html>

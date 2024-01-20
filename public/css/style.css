@@ -70,5 +70,12 @@ p {
 }
 .posts{
   background-color: #219ebc;
- 
+  padding: 3rem;
+  display: flex;
+  gap: 1rem;
+}
+
+.post-card{
+  border-radius: 3px;
+  box-shadow: 6px 3px 3px rgba(0, 0, 0, 0.6);
 }

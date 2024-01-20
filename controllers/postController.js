@@ -1,5 +1,5 @@
 // controllers/postController.js
-const router = require("express").Router()
+
 const db = require('../models');
 
 const renderSinglePost = async (req, res) => {
@@ -18,6 +18,7 @@ const renderNewPost = (req, res) => {
 };
 
 const createPost = async (req, res) => {
+  console.log("yo doggy")
   try {
     const { title, content } = req.body;
 
@@ -25,10 +26,10 @@ const createPost = async (req, res) => {
     const newPost = await db.Post.create({
       title,
       content,
-      UserId: req.user.id,
+      userId: req.session.userId,
     });
 
-    res.redirect(`/post/${newPost.id}`);
+    res.json(newPost);
   } catch (error) {
     console.error('Error creating new post:', error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -77,28 +78,28 @@ const renderDeletePost = async (req, res) => {
   }
 };
 
-const renderDashboard = async (req, res) => {
-  try {
-    // Assuming you have a User model with a posts association
-    const user = await db.User.findByPk(req.user.id, {
-      include: {
-        model: db.Post,
-        order: [['createdAt', 'DESC']], // Order posts by creation date, newest first
-      },
-    });
+// const renderDashboard = async (req, res) => {
+//   try {
+//     // Assuming you have a User model with a posts association
+//     const user = await db.User.findByPk(req.user.id, {
+//       include: {
+//         model: db.Post,
+//         order: [['createdAt', 'DESC']], // Order posts by creation date, newest first
+//       },
+//     });
 
-    if (user) {
-      // Render the dashboard view and pass user and user's posts to the view
-      res.render('dashboard', { user });
-    } else {
-      // Handle case where user is not found
-      res.status(404).json({ error: 'User not found' });
-    }
-  } catch (error) {
-    console.error('Error rendering dashboard:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-};
+//     if (user) {
+//       // Render the dashboard view and pass user and user's posts to the view
+//       res.render('dashboard', { user });
+//     } else {
+//       // Handle case where user is not found
+//       res.status(404).json({ error: 'User not found' });
+//     }
+//   } catch (error) {
+//     console.error('Error rendering dashboard:', error);
+//     res.status(500).json({ error: 'Internal Server Error' });
+//   }
+// };
 
 const deletePost = async (req, res) => {
   try {
@@ -110,14 +111,41 @@ const deletePost = async (req, res) => {
   }
 };
 
-// module.exports = {
-//   renderSinglePost,
-//   renderNewPost,
-//   createPost,
-//   renderUpdatePost,
-//   updatePost,
-//   renderDeletePost,
-//   renderDashboard,
-//   deletePost,
-// };
-module.exports = router
+const allPosts = async (req, res) => {
+  try {
+    const posts = await db.Post.findAll()
+    res.status(200).json(posts)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error)
+    
+  }
+}
+
+const onePost= async (req, res) => {
+  try {
+    userId = req.session.userId
+    const one = await db.Post.findOne({
+      where: {
+        userId
+      }
+    })
+    res.status(200).json({message: "why is there no userId" ,one})
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error)
+  }
+}
+
+module.exports = {
+  renderSinglePost,
+  renderNewPost,
+  createPost,
+  allPosts,
+  onePost,
+  // renderUpdatePost,
+  // updatePost,
+  // renderDeletePost,
+  // renderDashboard,
+  // deletePost,
+};

@@ -6,13 +6,15 @@ const db = require('../models');
 const dashboardView =  async (req, res) => {
   try {
     // Fetch blog posts created by the logged-in user
+    userId = req.session.userId
     const userBlogPosts = await db.Post.findAll({
       where: { 
-        userId: req.session.id 
+       userId
       },
       
     });
-
+   const what = {userId: req.session.userId}
+   console.log(what)
    console.log( "raw data 8))))))))))))))))))))))))))))))D~~~~", userBlogPosts)
     const posts = userBlogPosts.map((post) => post.get({plain:true}))
     
